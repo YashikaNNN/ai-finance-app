@@ -1,3 +1,6 @@
+// Load Prisma workaround first
+import './prisma-client-workaround.js';
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
@@ -13,9 +16,10 @@ const nextConfig = {
     serverActions: {
       bodySizeLimit: "5mb",
     },
-    // Disable tracing to fix the enableTracing error
-    transpilePackages: ["lucide-react"],
   },
+  
+  // Instead of transpilePackages in experimental
+  transpilePackages: ["lucide-react"],
 
   env: {
     // Add the Gemini API key as a public environment variable

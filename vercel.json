@@ -12,6 +12,8 @@
   "env": {
     "RUST_BACKTRACE": "1",
     "PRISMA_LOG_LEVEL": "warn",
-    "PRISMA_ENGINE_TYPE": "library" 
+    "PRISMA_CLIENT_ENGINE_TYPE": "binary",
+    "NODE_OPTIONS": "--no-warnings",
+    "NEXT_TELEMETRY_DISABLED": "1"
   }
 } 

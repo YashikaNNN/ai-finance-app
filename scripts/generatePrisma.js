@@ -1,20 +1,3 @@
-#!/bin/bash
-export PRISMA_LOG_LEVEL=warn
-export NODE_OPTIONS="--no-warnings"
-
-# Install dependencies
-npm install --legacy-peer-deps || exit 1
-
-# Install required packages for build
-npm install tailwindcss postcss autoprefixer eslint eslint-config-next prisma --no-save || exit 1
-
-# Ensure scripts directory exists
-mkdir -p scripts
-
-# Create the Prisma generation patch script if it doesn't exist
-if [ ! -f "scripts/generatePrisma.js" ]; then
-  echo "Creating Prisma generation script..."
-  cat > scripts/generatePrisma.js << 'EOF'
 // Custom script to generate Prisma client with explicit options
 const { exec } = require('child_process');
 const fs = require('fs');
@@ -69,14 +52,4 @@ process.env.PRISMA_CLIENT_ENGINE_TYPE = 'binary';
       console.error(`Error patching Prisma client: ${err}`);
     }
   }
-});
-EOF
-fi
-
-# Run custom Prisma generation script
-node scripts/generatePrisma.js || exit 1
-
-# Build the Next.js app
-NEXT_TELEMETRY_DISABLED=1 next build || exit 1
-
-echo "Build completed successfully" 
+}); 
