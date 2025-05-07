@@ -9,7 +9,7 @@
     "lint": "next lint",
     "email": "email dev",
     "postinstall": "npx prisma generate",
-    "vercel-build": "npm install tailwindcss postcss autoprefixer --no-save && npx prisma generate && next build"
+    "vercel-build": "npm install tailwindcss postcss autoprefixer eslint eslint-config-next --no-save && npx prisma generate && NEXT_TELEMETRY_DISABLED=1 next build"
   },
   "dependencies": {
     "@arcjet/next": "^1.0.0-alpha.34",
@@ -53,7 +53,7 @@
     "autoprefixer": "^10.4.16"
   },
   "devDependencies": {
-    "eslint": "^8",
+    "eslint": "^8.56.0",
     "eslint-config-next": "15.0.3",
     "prisma": "^6.0.1",
     "react-email": "3.0.3"
