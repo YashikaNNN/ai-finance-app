@@ -5,8 +5,13 @@
       "src": "package.json",
       "use": "@vercel/next",
       "config": {
-        "buildCommand": "npm install --legacy-peer-deps && npm run vercel-build"
+        "buildCommand": "./build.sh"
       }
     }
-  ]
+  ],
+  "env": {
+    "RUST_BACKTRACE": "1",
+    "PRISMA_LOG_LEVEL": "warn",
+    "PRISMA_ENGINE_TYPE": "library" 
+  }
 } 

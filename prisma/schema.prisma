@@ -1,5 +1,9 @@
 generator client {
   provider = "prisma-client-js"
+  engineType = "library"
+  previewFeatures = []
+  // Fix for the enableTracing error
+  enableTracing = false
 }
 
 datasource db {

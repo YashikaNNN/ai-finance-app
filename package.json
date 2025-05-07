@@ -9,7 +9,7 @@
     "lint": "next lint",
     "email": "email dev",
     "postinstall": "npx prisma generate",
-    "vercel-build": "npm install tailwindcss postcss autoprefixer eslint eslint-config-next --no-save && npx prisma generate && NEXT_TELEMETRY_DISABLED=1 next build"
+    "vercel-build": "PRISMA_LOG_LEVEL=warn npm install tailwindcss postcss autoprefixer eslint eslint-config-next prisma --no-save && npx prisma generate && NEXT_TELEMETRY_DISABLED=1 next build"
   },
   "dependencies": {
     "@arcjet/next": "^1.0.0-alpha.34",
