@@ -26,11 +26,6 @@ const nextConfig = {
     NEXT_PUBLIC_GEMINI_API_KEY: process.env.GEMINI_API_KEY,
   },
   
-  // Disable telemetry
-  telemetry: { 
-    telemetryDisabled: true 
-  },
-  
   // ESLint configuration
   eslint: {
     // Warning only on production builds

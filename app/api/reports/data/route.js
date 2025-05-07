@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { auth } from "@clerk/nextjs/server";
-import { db } from "@/lib/prisma";
+import prisma from "@/lib/prisma";
 import { GoogleGenerativeAI } from "@google/generative-ai";
 
 async function generateFinancialInsights(stats, month) {
@@ -49,7 +49,7 @@ export async function GET() {
     }
 
     // Get user from database
-    const user = await db.user.findUnique({
+    const user = await prisma.user.findUnique({
       where: { clerkUserId: userId },
       select: {
         id: true,
@@ -69,7 +69,7 @@ export async function GET() {
     const monthName = now.toLocaleString("default", { month: "long" });
 
     // Get transactions for current month
-    const transactions = await db.transaction.findMany({
+    const transactions = await prisma.transaction.findMany({
       where: {
         userId: user.id,
         date: {

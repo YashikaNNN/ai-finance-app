@@ -43,7 +43,7 @@ exec(command, (error, stdout, stderr) => {
       // Create a patch file that explicitly sets enableTracing
       const patchContent = `
 // This is a patch to fix the enableTracing issue
-process.env.PRISMA_CLIENT_ENGINE_TYPE = 'binary';
+process.env.PRISMA_CLIENT_ENGINE_TYPE = 'library';
       `;
       
       fs.writeFileSync(path.join(clientDir, 'patch.js'), patchContent);

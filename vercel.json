@@ -12,7 +12,7 @@
   "env": {
     "RUST_BACKTRACE": "1",
     "PRISMA_LOG_LEVEL": "warn",
-    "PRISMA_CLIENT_ENGINE_TYPE": "binary",
+    "PRISMA_CLIENT_ENGINE_TYPE": "library",
     "NODE_OPTIONS": "--no-warnings",
     "NEXT_TELEMETRY_DISABLED": "1"
   }

@@ -1,6 +1,7 @@
 #!/bin/bash
 export PRISMA_LOG_LEVEL=warn
 export NODE_OPTIONS="--no-warnings"
+export PRISMA_CLIENT_ENGINE_TYPE=library
 
 # Install dependencies
 npm install --legacy-peer-deps || exit 1
@@ -60,7 +61,7 @@ exec(command, (error, stdout, stderr) => {
       // Create a patch file that explicitly sets enableTracing
       const patchContent = `
 // This is a patch to fix the enableTracing issue
-process.env.PRISMA_CLIENT_ENGINE_TYPE = 'binary';
+process.env.PRISMA_CLIENT_ENGINE_TYPE = 'library';
       `;
       
       fs.writeFileSync(path.join(clientDir, 'patch.js'), patchContent);
@@ -75,6 +76,16 @@ fi
 
 # Run custom Prisma generation script
 node scripts/generatePrisma.js || exit 1
+
+# Create prisma client patch for runtime
+echo "Creating Prisma client runtime patch..."
+cat > prisma-patch.js << 'EOF'
+// Fix for Prisma client during runtime
+process.env.PRISMA_CLIENT_ENGINE_TYPE = 'library';
+EOF
+
+# Make sure the patch is loaded at runtime
+export NODE_OPTIONS="$NODE_OPTIONS --require ./prisma-patch.js"
 
 # Build the Next.js app
 NEXT_TELEMETRY_DISABLED=1 next build || exit 1
